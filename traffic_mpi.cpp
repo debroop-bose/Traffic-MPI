@@ -17,7 +17,7 @@ struct TrafficRecord {
     int cars;
 };
 
-// this decised which mpi process will reduce a particular key
+// this decide which mpi process will reduce a particular key
 int getReducer(string hour, string lightID, int numProcesses)
 {
     string key = hour + "|" + lightID;
@@ -313,7 +313,7 @@ int main (int argc, char *argv[])
     for (int process=0; process<numProcesses; process++)
         shuffleSendData+=shuffleParts[process];
     
-    // first exchange how much data every rabk will receive
+    // first exchange how much data every rank will receive
     MPI_Alltoall(shuffleSendCounts.data(), 1, MPI_INT, shuffleRecvCounts.data(), 1, MPI_INT,MPI_COMM_WORLD);
     
     int totalShuffleRecv=0;
